@@ -1,3 +1,115 @@
-<!DOCTYPE html><html lang=zh-CN><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>P1-Hello-uniApp</title><script>document.addEventListener('DOMContentLoaded', function() {
-				document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'
-			})</script><link rel=stylesheet href=./static/index.css></head><body><noscript><strong>Please enable JavaScript to continue.</strong></noscript><div id=app></div><script>/*BAIDU_STAT*/</script><script src=./static/js/chunk-vendors.0e00d134.js></script><script src=./static/js/index.bdd7b4b1.js></script></body></html>
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style type="text/css">
+      * {
+        /*初始化样式*/
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        /*用于 获取 屏幕的可视宽高*/
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        /*让 body 初始 width 和 height 就 等于 页面可视区域的 宽高*/
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        /*用于 测试的 样式*/
+        background-color: #444;
+        color: #FFF;
+        letter-spacing: 4px;
+        font-size: 28px;
+        /*文字居中*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @media screen and (orientation:portrait) {
+
+        /*竖屏样式*/
+        body {
+          transform-origin: 0 0;
+          transform: rotateZ(90deg) translateY(-100%);
+        }
+      }
+
+      /*测试 边边角角*/
+      div {
+        background-color: #F00;
+        position: fixed;
+        height: 2px;
+        width: 100px;
+      }
+
+      div:nth-of-type(1) {
+        top: 0;
+        left: 0;
+      }
+
+      div:nth-of-type(2) {
+        top: 0;
+        right: 0;
+
+      }
+
+      div:nth-of-type(3) {
+        bottom: 0;
+        left: 0;
+      }
+
+      div:nth-of-type(4) {
+        bottom: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+
+  <iframe onmousewheel="" frameborder="0" scrolling="no" style="border-width:0;" id="tl-timeline-iframe" width="100%" height="100%" src="https://www.tiki-toki.com/timeline/embed/1677489/1562109526/"></iframe>
+
+
+    <script>
+      (function() {
+        function resize() {
+          var body = document.getElementsByTagName('body')[0];
+          var html = document.getElementsByTagName('html')[0];
+          var width = html.clientWidth;
+          var height = html.clientHeight;
+          var max = width > height ? width : height;
+          var min = width > height ? height : width;
+          body.style.width = max + "px";
+          body.style.height = min + "px";
+        }
+        resize();
+        window.addEventListener("resize", resize)
+      })();
+
+      if (window.postMessage) {
+        var tlMouseupFunc = function() {
+          var tlFrame = document.getElementById("tl-timeline-iframe");
+          if (tlFrame.contentWindow && tlFrame.contentWindow.postMessage) {
+            tlFrame.contentWindow.postMessage("mouseup", "*");
+          }
+        }
+        if (typeof window.addEventListener != "undefined") {
+          window.addEventListener("mouseup", tlMouseupFunc, false);
+        } else if (typeof window.attachEvent != "undefined") {
+          window.attachEvent("onmouseup", tlMouseupFunc);
+        }
+      }
+    </script>
+  </body>
+</html>
